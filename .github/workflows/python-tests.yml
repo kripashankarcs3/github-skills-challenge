@@ -1,3 +1,4 @@
+# Run the Python test suite on pull requests to main.
 name: Python Tests
 
 on:

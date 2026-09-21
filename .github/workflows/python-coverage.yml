@@ -11,6 +11,8 @@ permissions:
 jobs:
   python-coverage:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
 
     steps:
       - name: Checkout code
@@ -29,7 +31,8 @@ jobs:
           pip install pytest==8.4.1 coverage==7.9 pytest-cov==6.2.1
 
       - name: Run tests and generate coverage details
-        run: pytest --cov=src --cov-report=term-missing --cov-report=xml
+        run: |
+          python -m pytest --cov=src --cov-report=term-missing --cov-report=xml
 
       - name: Coverage comment
         uses: py-cov-action/python-coverage-comment-action@v3
